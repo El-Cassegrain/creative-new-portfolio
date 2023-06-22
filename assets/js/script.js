@@ -104,7 +104,6 @@ document.addEventListener('DOMContentLoaded', () => {
         linkCtaFighter.classList.remove('v-hidden');
         logoFighter.classList.add('active');
         imgElementsFighter.forEach((element) => {
-            console.log(element)
             element.classList.remove('v-hidden');
             element.classList.add('visible');
         });
