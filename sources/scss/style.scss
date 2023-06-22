@@ -1,0 +1,279 @@
+@import "global";
+
+/* Main styles */
+#subtitle-init {
+    position: absolute;
+    z-index: 10;
+    padding: 24px 32px;
+    top: 45%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: var(--light-blue);
+    letter-spacing: 2px;
+    font-size: 1.2rem;
+}
+
+#cta-wrapper {
+    position: absolute;
+    z-index: 10;
+    width: 100%;
+    bottom: 150px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-weight: 300;
+    font-size: 3rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    .logo-wrapper {
+        margin-top: 32px;
+        padding-right: 32px;
+    }
+}
+h2 {
+    display: block;
+}
+
+.cta {
+    padding: 20px 32px;
+    margin: 0 32px 0 0;
+    position: relative;
+    display: block;
+    //background-color:red;
+    
+    &::after {
+        content: "";
+        position: absolute;
+        border-right: 1px solid var(--light-blue);
+        height: 40px;
+        right: -16px;
+        top: 77%;
+        transform: translate(-50%, -50%);
+    }
+    &:hover {
+            transform: translateY(6%);
+            transition: transform 0.25s 0.012s cubic-bezier(.39,.59,.68,1);
+    }
+}
+
+.cta:nth-last-child(1)::after {
+    border: none;
+}
+
+/* Cursors on CTA */
+#circle-cursor.expand.poetry-hovering .outer-circle {
+    stroke: var(--pink);
+}
+
+#circle-cursor.expand.poetry-hovering .inner-circle {
+    fill: var(--pink);
+    animation: shake 0.3s infinite;
+}
+
+#circle-cursor.expand.github-hovering .outer-circle {
+    stroke: var(--green);
+}
+
+#circle-cursor.expand.github-hovering .inner-circle {
+    fill: var(--green);
+    animation: shake 0.3s infinite;
+}
+
+#circle-cursor.expand.dribbble-hovering .outer-circle {
+    stroke: var(--yellow);
+}
+
+#circle-cursor.expand.dribbble-hovering .inner-circle {
+    fill: var(--yellow);
+    animation: shake 0.3s infinite;
+}
+
+.logo-wrapper {
+    position: relative;
+    left: 0;
+    bottom: 0;
+    margin-top: 60px;
+    overflow: hidden;
+    width: 90px;
+    height: 90px;
+    border-radius: 50%;
+    #logo-poetry, #logo-github, #logo-fighter, #logo-dribbble {
+        position: absolute;
+        display: block;
+        width: 90px;
+        height: 90px;
+        top: 0;
+        left: 0;
+        visibility: hidden;
+        opacity: 0;
+        transform: translateY(120%);
+        &.active {
+            transform: translateY(0);
+            visibility: visible;
+            opacity: 1;
+        }
+        transition: all ease-in-out 0.35s 0.012s;
+    }
+}
+
+a.link-cta {
+    margin-top: 20px;
+    border-radius: 4px;
+    display: inline-flex;
+    &:hover {
+        padding: 10px 32px 10px 16px;
+        animation: bounce ease-in-out 0.55s 0.25s infinite alternate-reverse;
+        &::after {
+            content: "→";
+            visibility: visible;
+            opacity: 1;
+            transform: translateX(108%);
+            transition: all ease-in 0.15s;
+        }
+    }
+    &.poetry {
+        color: var(--pink);
+        &:hover {
+            border: 1px solid rgba(var(--pink), 0.75);
+            box-shadow: 0px 0px 3px var(--pink);
+        }
+    }
+    &.github {
+        color: var(--green);
+        &:hover {
+            border: 1px solid rgba(var(--green), 0.75);
+            box-shadow: 0px 0px 3px var(--green);
+        }
+    }
+    &.fighter {
+        color: var(--red);
+        &:hover {
+            border: 1px solid rgba(var(--red), 0.75);
+            box-shadow: 0px 0px 3px var(--red);
+        }
+    }
+    &.dribbble {
+        color: var(--yellow);
+        &:hover {
+            border: 1px solid rgba(var(--yellow), 0.75);
+            box-shadow: 0px 0px 3px var(--yellow);
+        }
+    }
+}
+
+@keyframes bounce {
+    to {
+        box-shadow: 0 0 8px;
+    }
+}
+
+/* Fighter SVG gloves */
+.st0 {
+    fill: #FF0000;
+}
+
+.st1 {
+    fill: #E02424;
+}
+
+.st2 {
+    opacity: 0.2;
+}
+
+.st3 {
+    opacity: 0.7;
+    fill: #FFFFFF;
+}
+
+.st4 {
+    opacity: 0.2;
+    fill: #FFFFFF;
+}
+
+.st5 {
+    opacity: 0.1;
+    fill: #FFFFFF;
+}
+
+.st6 {
+    opacity: 0.1;
+}
+
+.img-container {
+    display: flex;
+    gap: 10px;
+    height: 320px;
+    position: absolute;
+    z-index: 20;
+    top: 40%;
+    left: 55%;
+    transform: translate(-50%, -50%);
+}
+
+@for $i from 1 through 5 {
+    $duration-increment: 2.1s;
+    $duration: $duration-increment + ($duration-increment * $i);
+    $index: 30;
+
+    
+    #poete-#{$i}.visible{
+        animation-name: shake-disapear;
+    }
+
+    #github-#{$i}.visible {
+        animation-name: shake-disapear;
+    }
+
+    #fight-#{$i}.visible {
+        animation-name: shake-disapear;
+    }
+
+    #dribbble-#{$i}.visible {
+        animation-name: shake-disapear;
+    }
+
+    #poete-#{$i}.visible, #github-#{$i}.visible, #fight-#{$i}.visible, #dribbble-#{$i} {
+        animation-duration: $duration;
+        animation-delay: $i;
+        animation-timing-function: ease;
+        animation-iteration-count: 2;
+        animation-fill-mode: forwards;
+        position: relative;
+        z-index: $index + $i;
+    }
+
+    .img-dribbble {
+        border: 3px solid rgba($yellow, 0.86);
+    }
+    .img-poetry {
+        border: 3px solid rgba($pink, 0.86);
+    }
+    .img-fight {
+        border: 3px solid rgba($red, 0.86);
+    }
+    .img-dev {
+        border: 3px solid rgba($green, 0.86);
+    }
+
+    @keyframes shake-disapear {
+        0% {
+            transform: translate((-12% -$i), -63%);
+        }
+        25% {
+            transform: translate((18% + $i), (-12% + $i));
+            opacity: 1;
+        }
+        50% {
+            transform: translate(15%, (-20% + $i));
+        }
+        75% {
+            transform: translate((-34% + $i), 17%);
+            opacity: 0.8;
+        }
+        100% {
+            transform: translate(-15%, (18% + $i));
+            opacity: 0;
+        }
+    }
+}
+

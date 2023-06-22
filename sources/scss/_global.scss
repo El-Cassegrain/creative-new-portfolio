@@ -1,0 +1,218 @@
+@import "variables";
+@import "mixins";
+
+/* Global styles */
+*::selection,
+*::-moz-selection {
+    background-color: pink;
+    color: black
+}
+
+*,
+*::before,
+*::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Variables CSS */
+:root {
+    --bg-color: rgb(28, 29, 35);
+    --light-blue: #F0F2FA;
+    --pink: #E187E1;
+    --yellow: #FFDF0E;
+    --green: #00ff00;
+    --red: #ff0000;
+    --main-font: "Open sans", sans-serif;
+}
+
+body {
+    background: var(--bg-color);
+    background: linear-gradient(180deg, rgba(28, 29, 35, 1) 0%, rgba(28, 29, 35, 1) 75%, rgba(11, 12, 16, 1) 100%);
+    height: 100vh;
+    font-family: var(--main-font);
+    font-weight: 500;
+    overflow: hidden;
+    border-top: 1px solid transparent;
+    position: relative;
+    z-index: 0;
+    color: var(--light-blue);
+    cursor: none;
+}
+
+.d-none {
+    display: none
+}
+
+.v-hidden {
+    opacity: 0;
+    visibility: hidden;
+    transition: all ease-in 0.159s;
+}
+
+.visible {
+    opacity: 1;
+    visibility: visible;
+    transition: all ease-in 0.55s;
+}
+
+a.link-cta {
+    color: var(--light-blue);
+    font-size: 1rem;
+    font-weight: 300;
+    text-transform: uppercase;
+    text-decoration: none;
+    position: absolute;
+    padding: 6px 12px 6px 0;
+    z-index: 30;
+    transition: all ease-out 0.12s 0.26s;
+    border: 1px solid transparent;
+    display: inline-flex;
+    align-items: center;
+    cursor: none;
+    &::after {
+        content: "→";
+        margin-top: -3.2px;
+        visibility: hidden;
+        opacity: 0;
+        transform: translateX(-150%);
+        transition: opacity ease-in 0.12s, transform ease-in-out 0.29s;
+    }
+    
+}
+
+.circle-cursor {
+    position: fixed;
+    transform: translate(-50%, -50%);
+    top: 0;
+    left: 0;
+    width: 40px;
+    height: 40px;
+    pointer-events: none;
+    z-index: 9999;
+}
+
+.outer-circle,
+.inner-circle {
+    transition: all 0.35s;
+}
+
+.inner-circle {
+    fill: rgba(#000, 0.3)
+}
+
+.element-to-hover {
+    position: relative;
+    display: inline-block;
+    transition: transform 1s ease;
+}
+
+#circle-cursor.expand .outer-circle {
+    transform-origin: 50% 50%;
+    transform: scale(1.6);
+    stroke: var(--red);
+    transition: transform 1s ease;
+}
+
+#circle-cursor.expand .inner-circle {
+    fill: var(--red);
+    animation: shake 0.3s infinite;
+}
+
+@keyframes shake {
+    0% {
+        transform: translate(-2px, -2px);
+    }
+
+    25% {
+        transform: translate(2px, -2px);
+    }
+
+    50% {
+        transform: translate(2px, 2px);
+    }
+
+    75% {
+        transform: translate(-2px, 2px);
+    }
+
+    100% {
+        transform: translate(-2px, -2px);
+    }
+}
+
+.bg-text {
+    font-size: 12.75rem;
+    text-transform: uppercase;
+    font-weight: 900;
+    line-height: 12.8rem;
+    position: absolute;
+    z-index: 1;
+    margin-top: -80px;
+    width: 500%;
+    height: 100%;
+    color: rgba(#0E0F13, 0.23);
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.slogan {
+    white-space: no-wrap;
+    position: relative;
+    display: inline-flex;
+    animation-timing-function: ease;
+    animation-iteration-count: infinite;
+    animation-direction: alternate-reverse;
+
+    &.slide-left {
+        animation-name: slide-left;
+    }
+
+    &.slide-right {
+        animation-name: slide-right;
+    }
+}
+
+
+
+@keyframes slide-left {
+    from {
+        transform: translateX(0);
+    }
+
+    to {
+        transform: translateX(25%);
+    }
+}
+
+@keyframes slide-right {
+    from {
+        transform: translateX(10%);
+    }
+
+    to {
+        transform: translateX(-10%);
+    }
+}
+
+$dacalage-inital: 0;
+$decalage-increment: 280px;
+$duration-increment: 110s;
+
+@for $i from 1 through 5 {
+    $decalage: $dacalage-inital + ($decalage-increment * $i);
+    $duration: $duration-increment + ($duration-increment * $i);
+    .slide-#{$i} {
+        margin-left: calc(-30% + $decalage);
+        white-space: no-wrap;
+        position: relative;
+        display: inline-flex;
+        animation-timing-function: linear;
+        animation-iteration-count: infinite;
+        animation-direction: alternate-reverse;
+        animation-duration: $duration;
+    }
+}
