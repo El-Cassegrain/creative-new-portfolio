@@ -125,7 +125,6 @@ document.addEventListener('DOMContentLoaded', () => {
         linkCtaDribbble.classList.remove('v-hidden');
         logoDribbble.classList.add('active');
         imgElementsDribbble.forEach((element) => {
-            console.log(element)
             element.classList.remove('v-hidden');
             element.classList.add('visible');
         });
